@@ -3,7 +3,7 @@
 # ----------------------- #
 
 url: http://awesomejie.github.io
-title: Jaylo的博客
+title: Jaylo的蘑菇园
 subtitle: Where Evolutionary Mutation Starts
 author: Jaylo
 simple_search: https://www.google.com/search
@@ -70,8 +70,8 @@ github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user:
-twitter_tweet_button: true
+#twitter_user:
+#twitter_tweet_button: true
 
 # Google +1
 google_plus_one: false
@@ -99,3 +99,6 @@ google_analytics_tracking_id:
 
 # Facebook Like
 facebook_like: false
+
+# weibo
+weibo_share: true
