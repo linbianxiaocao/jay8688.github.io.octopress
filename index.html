@@ -9,21 +9,7 @@
   <meta name="author" content="Jaylo">
 
   
-  <meta name="description" content="一定会用到的一些git命令 新开一个project 1
-2
-3
-4
-5
-6
-7
-8
-mkdir ~/Hello-World
-cd ~/Hello-World
-git init
-touch README
-git add README
-git commit -m 'first commit'
-git &hellip;">
+  <meta name="description" content="前前后后我使用git也有个把年头了，可是中间常被不同事务打扰，每当再拾起git，曾经熟练掌握的命令又变得好生疏。为了能够让知识的储备尽可能的不被中断，这里记录下我经常使用到的一些git命令，今后即使又有好久不碰git，期望回顾一下仍能尽快上手。 ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -101,119 +87,14 @@ git &hellip;">
   </header>
 
 
-  <div class="entry-content"><p>一定会用到的一些git命令</p>
-
-<h3>新开一个project</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>mkdir ~/Hello-World
-</span><span class='line'>cd ~/Hello-World
-</span><span class='line'>git init
-</span><span class='line'>touch README
-</span><span class='line'>git add README
-</span><span class='line'>git commit -m 'first commit'
-</span><span class='line'>git remote add origin https://github.com/awesomejie/Hello-World.git
-</span><span class='line'>git push -u origin master</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>remote和branch</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git remote -v
-</span><span class='line'>git remote show origin
-</span><span class='line'># changes URL for the remote origin
-</span><span class='line'>git remote set-url origin https://github.com/awesomejie/Hello-World.git  
-</span><span class='line'>git branch -a,-v,-vv
-</span><span class='line'>git branch --merged, --no-merged
-</span><span class='line'>git branch hotfix; git checkout hotfix # 等同于git checkout -b hotfix
-</span><span class='line'>git branch -d hotfix </span></code></pre></td></tr></table></div></figure>
-
-
-<h3>git的一些拓展运动</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git push origin serverfix
-</span><span class='line'>git push origin serverfix:awesomebranch
-</span><span class='line'>git push origin :serverfix  # delete serverfix branch from server
-</span><span class='line'>git push
-</span><span class='line'>git pull</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When you do <code>git fetch origin</code> that brings down new remote branch serverfix, you don&rsquo;t automatically have a new local serverfix branch - you only have an origin/serverfix pointer. To merge this branch into your current workin branch, you can run</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git merge origin/serverfix</span></code></pre></td></tr></table></div></figure>
-
-
-<p></p>
-
-<p>If you want your own serverfix branch that you can work on,</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git checkout -b serverfix origin/serverfix</span></code></pre></td></tr></table></div></figure>
-
-
-<p>gives a local branch that starts where origin/serverfix is. Tracking is enabled also.</p>
-
-<h3>查看commit历史和diff不同的commits</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git log -p, --stat
-</span><span class='line'>git diff  # to see what you've changed but not yet staged
-</span><span class='line'>git diff SHA_a SHA_b
-</span><span class='line'>git diff -cached (-staged)  # compare staged changes to last commit</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>删除和重命名</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git rm
-</span><span class='line'>git rm --cached README.txt  # tell git to ignore the file
-</span><span class='line'># 文件重命名
-</span><span class='line'># 以下命令等同于mv README.txt README; git rm README.txt; git add README
-</span><span class='line'>git mv README.txt README</span></code></pre></td></tr></table></div></figure>
-
-
-<h3>修改和undo</h3>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>git commit --amend
-</span><span class='line'>git reset HEAD README  # unstage file README
-</span><span class='line'>git checkout -- README  # revert change back to last commit
-</span><span class='line'>                        # this is a dangerous command. use with caution.</span></code></pre></td></tr></table></div></figure>
-
-
+  <div class="entry-content"><p>前前后后我使用git也有个把年头了，可是中间常被不同事务打扰，每当再拾起git，曾经熟练掌握的命令又变得好生疏。为了能够让知识的储备尽可能的不被中断，这里记录下我经常使用到的一些git命令，今后即使又有好久不碰git，期望回顾一下仍能尽快上手。</p>
 
 </div>
   
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/24/rolling-with-git/">Read on &rarr;</a>
+    </footer>
   
 
 
