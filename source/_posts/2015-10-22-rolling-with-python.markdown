@@ -12,9 +12,11 @@ categories: Python
 
 ##进制转换
 **hex <-> decimal**
+
 ```
 >>> int("0xff", 16)
 255
 >>> hex(255)
 '0xff'
 ```
+
